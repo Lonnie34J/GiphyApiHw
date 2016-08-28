@@ -3,21 +3,7 @@ $(document).ready(function(){
 //intial topics array
 var topics= ["bikeFails","animalFails","sportFails","danceFails"];
 
-function failGifs(){
 
-var fail=$(this).attr("data-name");
-var queryURL= "http://api.giphy.com/v1/gifs/search?q="+fail+"&api_key=dc6zaTOxFJmzC&limit=10";
-
-$.ajax({url: queryURL, method: 'GET'}).done(function(response){
-	
-	$("<div/>").append(JSON.stringify(response));
-	console.log(response);
-});
-
-
-
-}
-failGifs();
 
 
 function createButtons(){
@@ -32,5 +18,37 @@ function createButtons(){
 }
 
 createButtons();
+
+$("button").on("click",function(){
+
+var fail=$(this).attr("data-name");
+var queryURL= "http://api.giphy.com/v1/gifs/search?q="+fail+"&api_key=dc6zaTOxFJmzC&limit=10";
+ 
+$.ajax({url: queryURL, method: 'GET'}).done(function(response){
+	
+	var results = response.data;
+	console.log(response);
+
+	for(var j = 0; j<results.length; j++){
+		
+		var gifDiv =$("<div class='item'>")
+
+		var rating= results[j].rating;
+
+		var ratingText= $("<p>").text("Rating:" + rating);
+
+		var gifImage= $("<img>");
+		gifImage.attr("src", results[j].images.fixed_height.url);
+
+		gifDiv.append(ratingText)
+		gifDiv.append(gifImage)
+		$("#watchFails").prepend(gifDiv);
+	}
+});
+
+
+
+});
+
 
 });
