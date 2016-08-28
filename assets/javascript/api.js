@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 //intial topics array
-var topics= ["bikeFails","animalFails","sportFails","danceFails"];
+var topics= ["bike fails","animal fails","sport fails","dance fails"];
 
 
 
