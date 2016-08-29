@@ -38,17 +38,24 @@ $.ajax({url: queryURL, method: 'GET'}).done(function(response){
 		var ratingText= $("<p>").text("Rating:" + rating);
 
 		var gifImage= $("<img>");
-		gifImage.attr("src", results[j].images.fixed_height.url);
+		gifImage.attr("src", results[j].images.fixed_height_still.url);
 
 		gifDiv.append(ratingText)
 		gifDiv.append(gifImage)
 		$("#watchFails").prepend(gifDiv);
 	}
+
+	$("img").on("click", function(){
+	
+	$(gifImage).attr("src", results.images.fixed_height.url);
+		
+	
+});
 });
 
 
-
 });
+
 
 
 });
