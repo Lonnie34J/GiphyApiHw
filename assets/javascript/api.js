@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 
 //intial topics array
 var topics= ["bike fails","animal fails","sport fails","dance fails"];
@@ -7,7 +7,11 @@ var topics= ["bike fails","animal fails","sport fails","dance fails"];
 
 
 function createButtons(){
+
+	$("#failButtons").empty();
+
 	for(var i = 0; i<topics.length; i++){
+
 
 		var newButtons= $("<button>");
 		newButtons.addClass("fail");
@@ -19,7 +23,7 @@ function createButtons(){
 
 createButtons();
 
-$("button").on("click",function(){
+$("button").on("click",function activateGif(){
 
 var fail=$(this).attr("data-name");
 var queryURL= "http://api.giphy.com/v1/gifs/search?q="+fail+"&api_key=dc6zaTOxFJmzC&limit=10";
@@ -56,6 +60,20 @@ $.ajax({url: queryURL, method: 'GET'}).done(function(response){
 
 });
 
+$("#addAFail").on("click", function(){
+
+	var userFail= $("#fail-input").val().trim();
+
+	topics.push(userFail);
+
+	createButtons();
 
 
-});
+
+	return false;
+})
+
+
+
+
+
